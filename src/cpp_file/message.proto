@@ -1,0 +1,247 @@
+package net.protobuf;
+/****************MatchTeamInfo**********************/
+message MatchTeamInfo{
+	required string team_name = 1;//球队名称
+	required string manager_name = 2;//经理名称
+	optional string team_badge = 3;//队徽显示路径
+	optional string manager_img = 4;//经理显示路径
+	optional sint32 club_lev = 5;//俱乐部等级
+	optional sint32 main_id = 6;//核心球员id ca值最高
+	optional sint32 main_able = 7;//核心球员能力值
+	optional string clother_img_url = 8;//队服图标url
+}
+
+/****************MatchTeamAnsyInfo**********************/
+message MatchTeamAnsyInfo{
+	optional sint32 attack = 1;//攻击指数
+	optional sint32 defence = 2;//防守指数
+	optional sint32 ext_attack = 3;//附加攻击指数
+	optional sint32 ext_defence = 4;//附加防守指数
+	optional sint32 leader_id = 5;//队长pid
+	optional sint32 corner_kick_pid = 6;//发角球pid
+	optional sint32 penalty_pid = 7;//罚球pid
+	optional sint32 free_kick_pid = 8;//任意球pid
+}
+
+/****************MatchTeamPlayerInfo**********************/
+message MatchTeamPlayerInfo{
+	required sint32 pid = 1;//球员实体id
+	required string player_name = 2;//球员名
+	optional sint32 player_pa = 3;//球员PA值
+	optional sint32 kit_number = 4;//球衣号
+	optional string img_id = 5;//球员头像图标名字
+	repeated sint32 main_pos = 6;//球员最合适位置
+	repeated sint32 sub_pos = 7;//球员次合适位置
+}
+
+/****************MatchPlayerAnsyInfo**********************/
+message MatchPlayerAnsyInfo{
+	required sint32 pid = 1;//球员实体id
+	optional sint32 ca = 2;//球员星级
+	optional sint32 cond = 3;//0-100 活力值
+	required sint32 position_id = 4;//场上位置
+}
+
+/****************TacticalCardInfo**********************/
+message TacticalCardInfo{
+	required sint32 formate_card_id = 1;//阵型卡牌id
+	required sint32 attack_card_id = 2;//进攻卡牌id
+	required sint32 def_card = 3;//防守卡牌id
+}
+
+/****************MatchPlayerInfo**********************/
+message MatchPlayerInfo{
+	required sint32 time_scale = 1;//当前数据播放时间
+	required sint32 pid = 2;//球员id
+	required sint32 pox = 3;//坐标X
+	required sint32 poy = 4;//坐标Y
+}
+
+/****************MatchBuffCardInfo**********************/
+message MatchBuffCardInfo{
+	optional sint32 pid = 1;//pid
+	optional sint32 buff_item_id = 2;//buff card id
+}
+
+/****************StatisticsInfo**********************/
+message StatisticsInfo{
+	optional sint32 score = 1;//得分
+	optional sint32 pro = 2;//控球率
+	optional sint32 shoot = 3;//射正次数
+	optional sint32 shoot_on_goal = 4;//射门次数
+	optional sint32 free_kick = 5;//free_kick
+	optional sint32 corners = 6;//corners
+	optional sint32 offsides = 7;//offsides
+	optional sint32 fouls = 8;//fouls
+	optional sint32 red = 9;//red
+	optional sint32 yellow = 10;//yellow
+	optional sint32 pass_complete = 11;//传球
+	optional sint32 tackles = 12;//抢断
+}
+
+/****************MatchBallInfo**********************/
+message MatchBallInfo{
+	required sint32 time_scale = 1;//时间
+	required sint32 x = 2;//pos x
+	required sint32 y = 3;//pos y
+	required sint32 z = 4;//pos z
+}
+
+/****************MatchRefereeInfo**********************/
+message MatchRefereeInfo{
+	required sint32 time_scale = 1;//时间 %03X,
+	required sint32 p_id = 2;//裁判pid
+	required sint32 pos_x = 3;//x
+	required sint32 pos_y = 4;//y
+}
+
+/****************MatchEventInfo**********************/
+message MatchEventInfo{
+	required sint32 time_scale = 1;//时间
+	required sint32 type = 2;//事件类型
+	required sint32 sub_type = 3;//事件子类型
+	required sint32 broadcast_index = 4;//事件子类型索引
+	required sint32 from_pid = 5;//发起人
+	required sint32 to_pid = 6;//被作用者
+}
+
+/****************MatchBuffCard**********************/
+message MatchBuffCard{
+	optional sint32 team_id = 1;//team_id
+	optional sint32 op_team_id = 2;//op_team_id
+	optional sint32 pid = 3;//pid
+	optional sint32 op_pid = 4;//op_pid
+	optional sint32 buff_type = 5;//buff类型
+}
+
+/****************DefPlayerInfo**********************/
+message DefPlayerInfo{
+	required sint32 time_scale = 1;//时间
+	required sint32 pid = 2;//pid
+}
+
+
+message loginReq{
+	required sint32 time_stamp = 1;//时间戳
+	required sint32 match_id = 2;//比赛id var获取
+	required sint32 team_id = 3;//球队id var获取
+	required string ticket = 4;//登录票据
+}
+message RegistReq{
+	required sint32 time_stamp = 1;//时间戳
+}
+message MatchRountInfoReq{
+	required sint32 time_stamp = 1;//时间戳
+	required sint32 round_id = 2;//比赛round
+}
+message MatchStatisticsInfoReq{
+	required sint32 time_stamp = 1;//时间戳
+	required sint32 round_id = 2;//比赛round
+}
+message MatchEnviInfoReq{
+	required sint32 time_stamp = 1;//时间戳
+}
+message MatchInitTeamInfoReq{
+	required sint32 time_stamp = 1;//时间戳
+}
+message MatchInitPlayerReq{
+	required sint32 time_stamp = 1;//时间戳
+}
+message MatchPlayerAnsyInfoReq{
+	required sint32 time_stamp = 1;//时间戳
+}
+message MatchInitCardReq{
+	required sint32 time_stamp = 1;//时间戳
+}
+message ChangeTacticalCardReq{
+	required sint32 time_stamp = 1;//时间戳
+	optional sint32 card_id = 2;//卡牌id
+	optional sint32 card_type = 3;//卡牌类型
+}
+message ChangePlayerReq{
+	required sint32 time_stamp = 1;//时间戳
+	optional sint32 change_pid = 2;//原球员pid
+	optional sint32 to_pid = 3;//新球员pid
+	optional sint32 flag = 4;//2
+}
+message MatchTeamAnsyInfoReq{
+	required sint32 time_stamp = 1;//时间戳
+	optional sint32 type = 2;//-1:初始化，1：比赛中
+}
+message SpecifiedRoleReq{
+	required sint32 time_stamp = 1;//时间戳
+	optional sint32 player_id = 2;//球员id
+	optional sint32 type = 3;//1:角球2:任意球3:点球4:队长
+}
+message SetTrusteeshipReq{
+	required sint32 time_stamp = 1;//时间戳
+	optional sint32 trusteeship = 2;//0:非托管1:托管
+	optional sint32 type = 3;//1:顺序2:随机
+}
+message HeartbeatReq{
+	required sint32 time_stamp = 1;//时间戳
+}
+message MatchStartStatusReq{
+	required sint32 time_stamp = 1;//时间戳
+	required sint32 round_id = 2;//回合id
+}
+message InfoCodeAck{
+	optional sint32 cmd = 1;//请求cmd
+	required sint32 result_id = 2;//服务端信息代码
+	optional sint32 server_time = 3;//服务器时间
+	optional sint32 round_id = 4;//round_id
+}
+message MatchRountInfoAck{
+	required sint32 round_id = 1;//rid
+	required sint32 end_type = 2;//结束类型 END_TYPE
+	required sint32 attack_team_id = 3;//进攻方team_id
+	repeated MatchBuffCard buff_card_info = 4;//使用属性卡
+	required sint32 round_time = 5;//本round开始时间
+	required sint32 server_time = 6;//服务器时间
+	repeated MatchBallInfo ball_info = 7;//球信息
+	repeated MatchRefereeInfo ref_info = 8;//裁判
+	repeated MatchEventInfo evt_info = 9;//比赛中的事件
+	repeated MatchPlayerInfo match_player_info = 10;//球员信息
+}
+message MatchStatisticsInfoAck{
+	required StatisticsInfo home_statistics = 1;//主队统计
+	required StatisticsInfo away_statistics = 2;//客队统计
+}
+message MatchEnviInfoAck{
+	required string name = 1;//球场名称
+	required sint32 weather = 2;//天气状况
+	required sint32 court_cap = 3;//球场容量
+	required string court_image_id = 4;//球场图标id
+	optional string referee_a = 5;//裁判信息a
+	optional string referee_b = 6;//裁判信息b
+	optional string referee_c = 7;//裁判信息c
+	required sint32 match_type = 8;//比赛类型
+	optional sint32 is_novice = 9;//是否新手-1:非1:是
+}
+message MatchInitTeamInfoAck{
+	required sint32 match_type = 1;//球赛类型1:League 2:Addition 3:Tier 4:Tounament 5:Room
+	optional sint32 home_rate = 2;//主场队伍胜率
+	optional sint32 away_rate = 3;//客场队伍胜率
+	required MatchTeamInfo team_home_gen_info = 4;//主队信息
+	required MatchTeamInfo team_away_gen_info = 5;//客队信息
+	optional sint32 trusteeship = 6;//-1:非托管1托管
+	optional sint32 trusteeshipValue = 7;//1:顺序2：随机
+}
+message MatchInitPlayerAck{
+	repeated MatchTeamPlayerInfo team_home = 1;//主队球员信息 1-16
+	repeated MatchTeamPlayerInfo team_away = 2;//客队队球员信息17-32
+}
+message MatchPlayerAnsyInfoAck{
+	repeated MatchPlayerAnsyInfo player_ansy_info = 1;//球员动态信息
+}
+message MatchInitCardAck{
+	repeated sint32 formate_card_info = 1;//阵型卡信息
+	repeated sint32 attack_card_info = 2;//进攻卡信息
+	repeated sint32 def_card_info = 3;//防守卡信息
+	optional TacticalCardInfo home_current_use_card = 4;//你队在使用的卡
+	optional TacticalCardInfo away_current_use_card = 5;//对方队在使用的卡
+}
+message MatchTeamAnsyInfoAck{
+	optional MatchTeamAnsyInfo home_team_ansy_info = 1;//主队比赛动态信息
+	optional MatchTeamAnsyInfo away_team_ansy_info = 2;//客队比赛动态信息
+}

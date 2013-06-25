@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefine>
+	
+	<!--球队信息-->
+	<struct name="MatchTeamInfo" desc="球队信息" schema="">
+		<member name="team_name" type="String" need_type="required" desc="球队名称"/>
+		<member name="manager_name" type="String" need_type="required" desc="经理名称"/>
+		<member name="team_badge" type="String" need_type="optional" desc="队徽显示路径"/>
+		<member name="manager_img" type="String" need_type="optional" desc="经理显示路径"/>
+		<member name="club_lev" type="sint32" need_type="optional" desc="俱乐部等级"/>		
+		<member name="main_id" type="sint32" need_type="optional" desc="核心球员id ca值最高"/>
+		<member name="main_able" type="sint32" need_type="optional" desc="核心球员能力值"/>		
+		<member name="clother_img_url" type="String" need_type="optional" desc="队服图标url"/>
+	</struct>
+	
+	<!-- 球队比赛动态信息 -->
+	<struct name="MatchTeamAnsyInfo" desc="球队动态信息" schema="">
+		<member name="attack" type="sint32" need_type="optional" desc="攻击指数"/>
+		<member name="defence" type="sint32" need_type="optional" desc="防守指数"/>
+		
+		<member name="ext_attack" type="sint32" need_type="optional" desc="附加攻击指数"/>
+		<member name="ext_defence" type="sint32" need_type="optional" desc="附加防守指数"/>
+		
+		<member name="leader_id" type="sint32" need_type="optional" desc="队长pid"/>
+		
+		<member name="corner_kick_pid" type="sint32" need_type="optional" desc="发角球pid"/>
+		<member name="penalty_pid" type="sint32" need_type="optional" desc="罚球pid"/>
+		<member name="free_kick_pid" type="sint32" need_type="optional" desc="任意球pid"/>
+	</struct>
+	
+	<!--球员信息-->
+	<struct name="MatchTeamPlayerInfo" desc="球员信息" schema="">		
+		<member name="pid" type="sint32" need_type="required" desc="球员实体id"/>
+		<member name="player_name" type="string" need_type="required" desc="球员名"/>
+		<member name="player_pa" type="sint32" need_type="optional" desc="球员PA值"/>
+		<member name="kit_number" type="sint32" need_type="optional" desc="球衣号"/>		
+		<member name="img_id" type="String" need_type="optional" desc="球员头像图标名字"/>
+		<member name="main_pos" type="sint32" need_type="repeated" desc="球员最合适位置"/>
+		<member name="sub_pos" type="sint32" need_type="repeated" desc="球员次合适位置"/>
+	</struct>
+	
+	<!-- 球员动态信息 -->
+	<struct name="MatchPlayerAnsyInfo" desc="球员动态信息" schema="">
+		<member name="pid" type="sint32" need_type="required" desc="球员实体id"/>
+		<member name="ca" type="sint32" need_type="optional" desc="球员星级"/>
+		<member name="cond" type="sint32" need_type="optional" desc="0-100 活力值"/>
+		<member name="position_id" type="sint32" need_type="required" desc="场上位置"/>
+	</struct>
+	
+	<!--战术卡牌信息-->
+	<struct name="TacticalCardInfo" desc="战术卡牌信息">
+		<member name="formate_card_id" type="sint32" need_type="required" desc="阵型卡牌id"/>
+		<member name="attack_card_id" type="sint32" need_type="required" desc="进攻卡牌id"/>	
+		<member name="def_card" type="sint32" need_type="required" desc="防守卡牌id"/>	
+	</struct>
+	
+	<!--球员比赛信息-->
+	<struct name="MatchPlayerInfo" desc="球员比赛信息">
+		<member name="time_scale" type="sint32" need_type="required" desc="当前数据播放时间"/>	
+		<member name="pid" type="sint32" need_type="required" desc="球员id"/>	
+		<member name="pox" type="sint32" need_type="required" desc="坐标X"/>
+		<member name="poy" type="sint32" need_type="required" desc="坐标Y"/>
+	</struct>
+	
+	
+   <!--比赛buff 卡信息-->
+   <struct name="MatchBuffCardInfo" desc="比赛buff 卡信息" schema="%03X%03X">
+   		<member name="pid" type="sint32" need_type="optional" desc="pid"/>	
+   		<member name="buff_item_id" type="sint32" need_type="optional" desc="buff card id"/>
+   </struct>
+
+   <struct name="StatisticsInfo" desc="比赛（中、结）统计信息" > 
+   		<member name="score" type="sint32" need_type="optional" desc="得分"/>		
+		<member name="pro" type="sint32" need_type="optional" desc="控球率"/>
+		<member name="shoot" type="sint32" need_type="optional" desc="射正次数"/>		
+		<member name="shoot_on_goal" type="sint32"  need_type="optional" desc="射门次数"/>
+		<member name="free_kick" type="sint32" need_type="optional" desc="free_kick"/>		
+		<member name="corners" type="sint32" need_type="optional" desc="corners"/>
+		<member name="offsides" type="sint32" need_type="optional" desc="offsides"/>
+		<member name="fouls" type="sint32" need_type="optional" desc="fouls"/>
+		<member name="red" type="sint32" need_type="optional" desc="red"/>
+		<member name="yellow" type="sint32" need_type="optional" desc="yellow"/>
+		<member name="pass_complete" type="sint32"  need_type="optional" desc="传球"/>
+		<member name="tackles" type="sint32" need_type="optional" desc="抢断"/>		
+   </struct>	
+   
+   
+   <struct name="MatchBallInfo" desc="比赛过程中球信息">
+		<member name="time_scale" type="sint32" need_type="required"  desc="时间"/>
+		<member name="x" type="sint32" need_type="required" desc="pos x"/>
+		<member name="y" type="sint32" need_type="required" desc="pos y"/>
+		<member name="z" type="sint32" need_type="required"  desc="pos z"/>
+	</struct>
+	
+	
+	<struct name="MatchRefereeInfo" desc="比赛中裁判信息" >
+		<member name="time_scale" type="sint32" need_type="required" desc="时间 %03X,"/>
+		<member name="p_id" type="sint32" need_type="required"  desc="裁判pid"/>
+		<member name="pos_x" type="sint32" need_type="required"  desc="x"/>
+		<member name="pos_y" type="sint32"  need_type="required" desc="y"/>		
+	</struct>
+	
+	
+	<struct name="MatchEventInfo" desc="比赛中事件信息">
+		<member name="time_scale" type="sint32" need_type="required" desc="时间"/>
+		<member name="type" type="sint32" need_type="required" desc="事件类型"/>
+		<member name="sub_type" type="sint32" need_type="required" desc="事件子类型"/>
+		<member name="broadcast_index" type="sint32" need_type="required" desc="事件子类型索引"/>
+		<member name="from_pid" type="sint32" need_type="required" desc="发起人"/>
+		<member name="to_pid" type="sint32" need_type="required" desc="被作用者"/>	
+	</struct>
+	
+	
+	<struct name="MatchBuffCard" desc="使用buffer卡(道具)信息">	
+		<member name="team_id" type="sint32" need_type="optional" desc="team_id"/>
+		<member name="op_team_id" type="sint32" need_type="optional" desc="op_team_id"/>
+		<member name="pid" type="sint32" need_type="optional" desc="pid"/>
+		<member name="op_pid" type="sint32" need_type="optional" desc="op_pid"/>
+		<member name="buff_type" type="sint32" need_type="optional" desc="buff类型"/>
+	</struct>	
+	
+	<struct name="DefPlayerInfo" desc="球员高亮显示 ">
+		<member name="time_scale" type="sint32" need_type="required" desc="时间"/>
+		<member name="pid" type="sint32" need_type="required" desc="pid"/>	
+	</struct>
+</StructureDefine>

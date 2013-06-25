@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<protoDefine>
+	<proto_section min_proto_index="1000" max_proto_index="5000"/>	
+	
+	<proto name="InfoCode"  interactType="S2C" desc="服务端返回通用消息">
+		<param name="cmd" type="sint32" need_type="optional" desc="请求cmd"/>		
+		<param name="result_id" type="sint32" need_type="required" desc="服务端信息代码"/>		
+		<param name="server_time" type="sint32" need_type="optional" desc="服务器时间"/>	
+		<param name="round_id" type="sint32" need_type="optional" desc="round_id"/>		
+	</proto>
+
+	<!--***************************-->	
+	<proto name="login" interactType="C2S" desc="login" >
+		<param name="time_stamp" type="sint32" need_type="required"  desc="时间戳"/>
+		<param name="match_id" type="sint32" need_type="required" desc="比赛id var获取"/>
+		<param name="team_id" type="sint32" need_type="required"  desc="球队id var获取"/>	
+		<param name="ticket" type="String" need_type="required" desc="登录票据"/>	
+	</proto>
+	<!-- S2C 服务端返回通用消息 -->	 
+	<!--***************************-->
+	<proto name="Regist"  interactType="C2S" desc="注册">
+		<param name="time_stamp" type="sint32" need_type="required"  desc="时间戳"/>
+	</proto>
+	<!-- S2C 服务端返回通用消息 -->
+	<!--***************************-->	
+	<proto name="MatchRountInfo"  interactType="C2S" desc="获取比赛数据">
+		<param name="time_stamp" type="sint32" need_type="required"  desc="时间戳"/>
+		<param name="round_id" type="sint32" need_type="required"  desc="比赛round"/>
+	</proto>
+	
+	<proto name="MatchRountInfo"  interactType="S2C" desc="比赛回合信息">
+		<param name="round_id" type="sint32" need_type="required"  desc="rid"/>
+		<param name="end_type" type="sint32" need_type="required"   desc="结束类型 END_TYPE"/>
+		<param name="attack_team_id" type="sint32" need_type="required"  desc="进攻方team_id"/>
+		<param name="buff_card_info" type="MatchBuffCard" need_type="repeated"  desc="使用属性卡"/>			
+		<param name="round_time" type="sint32" need_type="required"  desc="本round开始时间"/>
+		<param name="server_time" type="sint32" need_type="required"  desc="服务器时间"/>
+		<param name="ball_info" type="MatchBallInfo" need_type="repeated"  desc="球信息"/>		
+		<param name="ref_info" type="MatchRefereeInfo" need_type="repeated"  desc="裁判"/>
+		<param name="evt_info" type="MatchEventInfo" need_type="repeated"  desc="比赛中的事件"/>
+		<param name="match_player_info" type="MatchPlayerInfo" need_type="repeated" desc="球员信息"/>		
+		<member name="def_player" type="DefPlayerInfo" need_type="repeated" desc="防守球员"/>
+	</proto>
+	
+	
+	<proto name="MatchStatisticsInfo"   interactType="C2S" desc="请求统计数据">	
+		<param name="time_stamp" type="sint32" need_type="required"  desc="时间戳"/>
+		<param name="round_id" type="sint32" need_type="required"  desc="比赛round"/>
+	</proto>
+	
+	<proto name="MatchStatisticsInfo"   interactType="S2C" desc="返回统计数据">	
+		<param name="home_statistics" type="StatisticsInfo" need_type="required"  desc="主队统计"/>
+		<param name="away_statistics" type="StatisticsInfo" need_type="required"  desc="客队统计"/>	
+	</proto>
+	
+	<!--***************************-->
+	
+	<proto name="MatchEnviInfo"  interactType="C2S" desc="比赛初始化获取比赛环境请求">
+		<param name="time_stamp" type="sint32" need_type="required"  desc="时间戳"/>
+	</proto>
+	<!-- S2C -->
+	<proto name="MatchEnviInfo"  interactType="S2C" desc="比赛环境信息">		
+		<param name="name" type="String" need_type="required" desc="球场名称"/>
+		<param name="weather" type="sint32" need_type="required" desc="天气状况"/>	
+		<param name="court_cap" type="sint32" need_type="required" desc="球场容量"/>		
+		<param name="court_image_id" type="string" need_type="required" desc="球场图标id"/>
+		<param name="referee_a" type="string" need_type="optional" desc="裁判信息a"/>
+		<param name="referee_b" type="string" need_type="optional" desc="裁判信息b"/>
+		<param name="referee_c" type="string" need_type="optional" desc="裁判信息c"/>
+		<param name="match_type" type="sint32" need_type="required" desc="比赛类型"/>
+		<param name="is_novice" type="sint32"  need_type="optional" desc="是否新手-1:非1:是"/>
+	</proto>	
+
+	<!--***************************-->
+
+	
+	<proto name="MatchInitTeamInfo"  interactType="C2S" desc="比赛初始化获取球队概要信息">
+		<param name="time_stamp" type="sint32" need_type="required"  desc="时间戳"/>
+	</proto>
+	
+	<proto name="MatchInitTeamInfo"  interactType="S2C" desc="球队概要信息">
+		<param name="match_type" type="sint32" need_type="required" desc="球赛类型1:League 2:Addition 3:Tier 4:Tounament 5:Room"/>
+		<param name="home_rate" type="sint32" need_type="optional" desc="主场队伍胜率"/>
+		<param name="away_rate" type="sint32" need_type="optional" desc="客场队伍胜率"/>
+		<param name="team_home_gen_info" type="MatchTeamInfo" need_type="required" desc="主队信息"/>
+		<param name="team_away_gen_info" type="MatchTeamInfo" need_type="required" desc="客队信息"/>
+		<param name="trusteeship" type="sint32" need_type="optional" desc="-1:非托管1托管"/>
+		<param name="trusteeshipValue" type="sint32" need_type="optional" desc="1:顺序2：随机"/>		
+	</proto>
+
+	<!--***************************-->
+
+	
+	<proto name="MatchInitPlayer"  interactType="C2S" desc="球员信息初始化请求">
+		<param name="time_stamp" type="sint32" need_type="required"  desc="时间戳"/>
+	</proto>
+	
+	<proto name="MatchInitPlayer"  interactType="S2C" desc="球员初始化信息">
+		<param name="team_home" type="MatchTeamPlayerInfo" need_type="repeated" desc="主队球员信息 1-16"/>
+		<param name="team_away" type="MatchTeamPlayerInfo" need_type="repeated" desc="客队队球员信息17-32"/>	
+	</proto>
+	<!--***************************-->
+	
+	<proto name="MatchPlayerAnsyInfo"  interactType="C2S" desc="球员动态信息请求">
+		<param name="time_stamp" type="sint32" need_type="required"  desc="时间戳"/>
+	</proto>
+	<proto name="MatchPlayerAnsyInfo"  interactType="S2C" desc="球员动态信息">
+		<param name="player_ansy_info" type="MatchPlayerAnsyInfo" need_type="repeated" desc="球员动态信息"/>		
+	</proto>
+	
+	<!--***************************-->
+	<proto name="MatchInitCard"  interactType="C2S" desc="请求比赛卡牌信息">
+		<param name="time_stamp" type="sint32" need_type="required"  desc="时间戳"/>
+	</proto>
+	
+	<proto name="MatchInitCard"  interactType="S2C" desc="比赛卡牌信息">
+		<param name="formate_card_info" type="sint32" need_type="repeated" desc="阵型卡信息"/> 
+		<param name="attack_card_info" type="sint32" need_type="repeated" desc="进攻卡信息"/> 			
+		<param name="def_card_info" type="sint32" need_type="repeated" desc="防守卡信息"/> 
+		
+		<param name="home_current_use_card" type="TacticalCardInfo" need_type="optional" desc="你队在使用的卡"/> <!-- 三种卡 -->
+		<param name="away_current_use_card" type="TacticalCardInfo" need_type="optional" desc="对方队在使用的卡"/> <!-- 三种卡 -->		
+		
+	</proto>
+
+	
+	<proto name="ChangeTacticalCard"  interactType="C2S" desc="换战术卡">
+		<param name="time_stamp" type="sint32" need_type="required"  desc="时间戳"/>
+		<param name="card_id"  type="sint32" need_type="optional" desc="卡牌id"/>
+		<param name="card_type"  type="sint32" need_type="optional" desc="卡牌类型"/>
+	</proto>
+	<!-- S2C 服务端返回通用消息 -->
+	<!--***************************-->
+
+	
+	<proto name="ChangePlayer"  interactType="C2S" desc="换人">
+		<param name="time_stamp" type="sint32" need_type="required"  desc="时间戳"/>
+		<param name="change_pid" type="sint32" need_type="optional" desc="原球员pid"/>
+		<param name="to_pid" type="sint32" need_type="optional" desc="新球员pid"/>
+		<param name="flag" type="sint32" need_type="optional" desc="2"/>
+	</proto>
+	<!-- S2C 服务端返回通用消息 -->
+	<!--***************************-->
+	
+	<proto name="MatchTeamAnsyInfo"   interactType="C2S" desc="球队比赛信息">
+		<param name="time_stamp" type="sint32" need_type="required"  desc="时间戳"/>
+		<param name="type" type="sint32" need_type="optional"  desc="-1:初始化，1：比赛中"/>
+	</proto>
+	
+	<proto name="MatchTeamAnsyInfo"  interactType="S2C" desc="球队比赛信息">		
+		<param name="home_team_ansy_info" type="MatchTeamAnsyInfo" need_type="optional" desc="主队比赛动态信息"/>
+		<param name="away_team_ansy_info" type="MatchTeamAnsyInfo"  need_type="optional" desc="客队比赛动态信息"/>
+	</proto>
+	
+
+	<proto name="SpecifiedRole"   interactType="C2S" desc="请求指定特定球员角色">
+		<param name="time_stamp" type="sint32" need_type="required"  desc="时间戳"/>
+		<param name="player_id" type="sint32"  need_type="optional" desc="球员id"/>
+		<param name="type" type="sint32"  need_type="optional" desc="1:角球2:任意球3:点球4:队长"/>		
+	</proto>
+	<!-- S2C 服务端返回通用消息 -->
+	
+	
+	<proto name="SetTrusteeship"  interactType="C2S" desc="请求指定当前托管模式">
+		<param name="time_stamp" type="sint32" need_type="required"  desc="时间戳"/>
+		<param name="trusteeship" type="sint32"  need_type="optional" desc="0:非托管1:托管"/>
+		<param name="type" type="sint32"  need_type="optional" desc="1:顺序2:随机"/>
+	</proto>	
+	<!-- S2C 服务端返回通用消息 -->
+	
+	<proto name="Heartbeat"   interactType="C2S" desc="心跳">
+		<param name="time_stamp" type="sint32" need_type="required"  desc="时间戳"/>		
+	</proto>
+	
+		
+	<proto name="MatchStartStatus"   interactType="C2S" desc="比赛可播放状态">
+		<param name="time_stamp" type="sint32" need_type="required"  desc="时间戳"/>		
+		<param name="round_id" type="sint32" need_type="required"  desc="回合id"/>		
+	</proto>
+	
+	
+</protoDefine>
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<protoDefine>
+	<enum name="KICK_TYP" desc="开始类型">
+		<member name="NORMAL_KICK" value="1" des="普通"/>
+		<member name="MIDDLE_INJURY_KICK" value="2" des="中场补时"/>
+		<member name="END_INJURY_KICK" value="3" des="下半场补时"/>
+		<member name="MIDDLE_KICK_OFF" value="4" des="下半场开球"/>
+		<member name="KICK_OFF" value="5" des="上半场开场"/>
+		<member name="GOAL_KICK_OFF" value="6" des="进球"/>
+		<member name="FREE_KICK_OFF" value="7" des="任意球"/>
+		<member name="PENALTY_KICK_OFF" value="8" des="点球"/>
+		<member name="CORNER_KICK_UP_OFF" value="9" des="角球上"/>
+		<member name="GK_KICK_OFF" value="10" des="门将开球"/>
+		<member name="THROW_IN" value="11" des=""/>
+		<member name="COUNTER_ATTACK" value="12" des=""/>
+		<member name="ADD_ROUND_VALUE" value="13" des="添加round"/>
+		<member name="SHOOTOUT_PENALTY" value="14" des="点球大战"/>
+		<member name="CORNER_KICK_DOWN_OFF" value="15" des="角球下"/>
+		
+	
+	</enum>
+	<enum name="END_TYPE" desc="结束类型">
+		<member name="GAME_ROUND_UN_HALF_END" value	= "1" desc = "下半场结束(全场结束)"/> 
+		<member name="GAME_ROUND_ON_HALF_KICK" value= "2" desc = "上半场开球"/> 
+		<member name="GAME_ROUND_HALF_END" value= "3" desc = "上半场结束"/> 
+		<member name="GAME_ROUND_HALF_KICK" value= "4" desc = "下半场开球"/> 
+		<member name="GAME_ROUND_PROCESS" value	= "5" desc = "比赛过程中"/> 
+		<member name="GAME_ROUND_NULL" value= "99"/> 
+	</enum>
+</protoDefine>
+
